@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.pedidos.consultation.model.Pedido;
+import com.br.pedidos.consultation.dto.PedidoDTO;
 import com.br.pedidos.consultation.service.PedidoConsultationService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,17 +21,17 @@ public class PedidoConsultationController {
 	private final PedidoConsultationService pedidoService;
 
 	@GetMapping("/status")
-	public ResponseEntity<Page<Pedido>> getPedidosByStatus(@RequestParam String status, Pageable pageable) {
+	public ResponseEntity<Page<PedidoDTO>> getPedidosByStatus(@RequestParam String status, Pageable pageable) {
 
-		Page<Pedido> pedidos = pedidoService.findByStatus(status, pageable);
+		Page<PedidoDTO> pedidos = pedidoService.findByStatus(status, pageable);
 
 		return ResponseEntity.ok(pedidos);
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<Pedido>> getAllPedidos(Pageable pageable) {
+	public ResponseEntity<Page<PedidoDTO>> getAllPedidos(Pageable pageable) {
 
-		Page<Pedido> pedidos = pedidoService.findAll(pageable);
+		Page<PedidoDTO> pedidos = pedidoService.findAll(pageable);
 
 		return ResponseEntity.ok(pedidos);
 	}
